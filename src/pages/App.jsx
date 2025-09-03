@@ -1,10 +1,11 @@
-import movieListData from "./data/movieListData.json";
-import MovieCard from "./components/MovieCard";
-import "./App.css";
+import movieListData from "../data/movieListData.json";
+import MovieCard from "../components/MovieCard";
+import "../App.css";
+import { useState } from "react";
 
 export default function App() {
   // movieListData의 results 배열로 접근
-  const movies = movieListData.results;
+  const [movies] = useState(movieListData.results);
 
   return (
     <main>
@@ -14,6 +15,7 @@ export default function App() {
         {movies.map((movie) => (
           <MovieCard
             key={movie.id}
+            movieId={movie.id}
             imagePath={movie.poster_path}
             movieTitle={movie.title}
             movieRating={movie.vote_average}
