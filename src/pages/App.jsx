@@ -8,20 +8,16 @@ export default function App() {
   const [movies] = useState(movieListData.results);
 
   return (
-    <main>
-      <h1>Movie</h1>
-
-      <section className="grid grid-cols-5 gap-5">
-        {movies.map((movie) => (
-          <MovieCard
-            key={movie.id}
-            movieId={movie.id}
-            imagePath={movie.poster_path}
-            movieTitle={movie.title}
-            movieRating={movie.vote_average}
-          />
-        ))}
-      </section>
-    </main>
+    <section className="grid grid-cols-5 gap-5">
+      {movies.map((movie) => (
+        <MovieCard
+          key={movie.id}
+          movieId={movie.id}
+          imagePath={movie.poster_path}
+          movieTitle={movie.title}
+          movieRating={movie.vote_average}
+        />
+      ))}
+    </section>
   );
 }
