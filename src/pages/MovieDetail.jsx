@@ -8,16 +8,18 @@ export default function MovieDetail() {
 
   return (
     <>
-      <section>
+      <section className="grid justify-items-center pt-5 gap-y-4">
         <img src={`${IMAGE_URL}${movie.backdrop_path}`} alt={movie.title} />
-        <h2>{movie.title}</h2>
-        <p>Rating {movie.vote_average}</p>
-        <div>
+        <div className="flex gap-5">
+          <h2>{movie.title}</h2>
+          <p>Rating {movie.vote_average}</p>
+        </div>
+        <div className="flex gap-4">
           {movie.genres.map((genres) => (
             <span key={genres.id}>{genres.name}</span>
           ))}
         </div>
-        <p>{movie.overview}</p>
+        <p className="w-xl">{movie.overview}</p>
       </section>
     </>
   );
