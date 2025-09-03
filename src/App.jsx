@@ -1,0 +1,25 @@
+import movieListData from "./data/movieListData.json";
+import MovieCard from "./components/MovieCard";
+import "./App.css";
+
+export default function App() {
+  // movieListData의 results 배열로 접근
+  const movies = movieListData.results;
+
+  return (
+    <main>
+      <h1>Movie</h1>
+
+      <section className="grid grid-cols-5 gap-5">
+        {movies.map((movie) => (
+          <MovieCard
+            key={movie.id}
+            imagePath={movie.poster_path}
+            movieTitle={movie.title}
+            movieRating={movie.vote_average}
+          />
+        ))}
+      </section>
+    </main>
+  );
+}
