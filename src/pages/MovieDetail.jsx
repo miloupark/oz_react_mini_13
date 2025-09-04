@@ -1,10 +1,34 @@
-import { useState } from "react";
-import { IMAGE_URL } from "../constants/tmdb";
-import movieDetailData from "../data/movieDetailData.json";
+import { useEffect, useState } from "react";
+import { IMAGE_URL, TMDB_BASE_URL } from "../constants/tmdb";
+import { useParams } from "react-router-dom";
 
 // 🧩 MovieDetail: 이미지(배경or포스터), 제목, 평점, 장르, 줄거리
 export default function MovieDetail() {
-  const [movie] = useState(movieDetailData);
+  // MovieCard와 id가 일치하는 디테일 페이지 보여주기
+  const { id } = useParams();
+  const [movie, setMovie] = useState(null);
+
+  useEffect(() => {
+    // API 요청 옵션
+    const options = {
+      method: "GET",
+      headers: {
+        accept: "application/json",
+        Authorization: `Bearer ${import.meta.env.VITE_TMDB_ACCESS_TOKEN}`,
+      },
+    };
+
+    // https://api.themoviedb.org/3/movie/{movie_id}
+    fetch(`${TMDB_BASE_URL}movie/${id}?language=ko-KR`, options)
+      .then((res) => res.json())
+      .then((data) => setMovie(data))
+      .catch((err) => console.error(err));
+  }, [id]);
+
+  // Loading
+  if (!movie) {
+    return <div>Loading UI 필요</div>;
+  }
 
   return (
     <>
