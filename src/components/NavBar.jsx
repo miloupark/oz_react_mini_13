@@ -1,26 +1,27 @@
 import { Link, NavLink } from "react-router-dom";
 import { Button } from "./ui/button";
+import { Input } from "./ui/input";
+import { Search } from "lucide-react";
 
 export default function NavBar() {
   return (
     <header className="flex justify-between py-2">
       {/* 로고 */}
       <Link to="/">
-        <h1>FilmArchive</h1>
+        <h1 className="text-xl font-bold text-foreground hover:text-primary transition-colors">
+          FilmArchive
+        </h1>
       </Link>
 
       {/* 검색창 */}
-      <form>
+      <form className="flex gap-2 items-center">
         <label htmlFor="search" className="sr-only">
           영화 검색
         </label>
-        <input
-          id="search"
-          type="text"
-          placeholder="영화 검색"
-          aria-label="영화 검색"
-        />
-        <button type="submit">검색</button>
+        <Input id="search" type="text" placeholder="영화 검색" />
+        <Button variant="outline" type="submit">
+          <Search />
+        </Button>
       </form>
 
       {/* 로그인, 회원가입 */}
