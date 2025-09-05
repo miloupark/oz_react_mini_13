@@ -1,8 +1,8 @@
 import MovieCard from "../components/MovieCard";
 import "../App.css";
 import { useEffect, useState } from "react";
-import HeroSwiper from "../components/HeroSwiper";
 import { TMDB_BASE_URL } from "@/constants/tmdb";
+import Hero from "../components/Hero";
 
 export default function App() {
   const [movies, setMovies] = useState([]);
@@ -36,8 +36,8 @@ export default function App() {
 
   return (
     <>
-      <HeroSwiper />
-      <section className="grid grid-cols-5 gap-5">
+      <Hero />
+      <section className="max-w-[1280px] space-y-4 grid grid-cols-5 gap-5">
         {movies.map((movie) => (
           <MovieCard
             key={movie.id}
