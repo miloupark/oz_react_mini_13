@@ -1,5 +1,4 @@
 import MovieCard from "../components/MovieCard";
-import "../App.css";
 import { useEffect, useState } from "react";
 import { TMDB_BASE_URL } from "@/constants/tmdb";
 import Hero from "../components/Hero";
@@ -35,9 +34,9 @@ export default function App() {
   // 의존성 배열을 비워, 컴포넌트 마운트될 때 한 번 실행
 
   return (
-    <>
+    <div className="w-full justify-items-center mx-auto text-center font-figtree">
       <Hero />
-      <section className="max-w-[1280px] space-y-4 grid grid-cols-5 gap-5">
+      <section className="max-w-[1280px] grid-cols-1 sm:grid-cols-3  md:grid-cols-4 lg:grid-cols-5 grid gap-5">
         {movies.map((movie) => (
           <MovieCard
             key={movie.id}
@@ -48,6 +47,6 @@ export default function App() {
           />
         ))}
       </section>
-    </>
+    </div>
   );
 }

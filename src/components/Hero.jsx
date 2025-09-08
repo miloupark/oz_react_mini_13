@@ -18,7 +18,7 @@ export default function Hero() {
         className="absolute inset-0 z-10
                     bg-gradient-to-b from-black/90 to-transparent"
       />
-      <div className="absolute z-20 text-4xl font-semibold text-white text-center space-y-5">
+      <div className="absolute z-20 text-2xl sm:text-3xl md:text-4xl  font-semibold text-white text-center space-y-5">
         <p>엔딩 크레딧 뒤, FilmArchive와 함께</p>
         <p>감상은 기록으로, 기록은 다시 감동으로</p>
       </div>

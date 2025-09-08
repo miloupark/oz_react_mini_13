@@ -30,11 +30,18 @@ export default function SearchTrigger({
       aria-haspopup="dialog"
       aria-expanded={isOpen}
       aria-controls="command-palette"
-      className="flex h-10 w-[320px] items-center gap-2 rounded-md border px-3 text-sm text-muted-foreground bg-background hover:bg-accent hover:text-accent-foreground transition-colors focus:outline-none focus:ring-2 focus:ring-ring/40"
+      className="flex h-10 items-center gap-2 rounded-md border
+        bg-background text-sm text-muted-foreground
+        hover:bg-accent hover:text-accent-foreground
+        transition-colors focus:outline-none focus:ring-2 focus:ring-ring/40
+        w-10 sm:w-full sm:px-3
+        justify-center sm:justify-start"
     >
       <Search className="h-4 w-4" />
-      <span className="truncate">{label}</span>
-      <kbd className="ml-auto rounded bg-muted px-1 text-xs">⌘K</kbd>
+      <span className="hidden sm:block truncate">{label}</span>
+      <kbd className="hidden sm:inline-flex ml-auto rounded bg-muted px-1 text-xs">
+        ⌘K
+      </kbd>
     </button>
   );
 }
