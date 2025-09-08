@@ -3,11 +3,14 @@ import { createRoot } from "react-dom/client";
 import "./index.css";
 import AppRoutes from "./routes/AppRoutes.jsx";
 import { BrowserRouter } from "react-router-dom";
+import { CommandPaletteProvider } from "./components/command/CommandPalette";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
     <BrowserRouter>
-      <AppRoutes />
+      <CommandPaletteProvider>
+        <AppRoutes />
+      </CommandPaletteProvider>
     </BrowserRouter>
   </StrictMode>
 );
