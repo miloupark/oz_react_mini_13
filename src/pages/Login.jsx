@@ -11,11 +11,15 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { loginSchema } from "@/lib/authSchemas";
 import InputField from "@/components/InputField";
-import { Link } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
+import { useAuth } from "@/contexts/AuthContext";
 
 // shadcn/ui Form + react-hook-form + zod
 
 export default function Login() {
+  const navigate = useNavigate();
+  const { login } = useAuth();
+
   const form = useForm({
     resolver: zodResolver(loginSchema), // zod 스키마로 검증
     defaultValues: { email: "", password: "" }, // RHF이 관리할 초기 값
@@ -24,7 +28,9 @@ export default function Login() {
   });
 
   const onSubmit = (data) => {
-    console.log("로그인 요청:", data);
+    // 로그인 테스트
+    login({ email: data.email, name: "Demo User" });
+    navigate("/", { replace: true });
     // 실제 로그인 API 호출
   };
 
