@@ -18,8 +18,10 @@ export default function UserMenu({ user, onLogout }) {
         <Button variant="outline" className="cursor-pointer">
           {user?.avatarUrl ? (
             <Avatar>
-              <AvatarImage src={user.avatarUrl} alt={user.name} />
-              <AvatarFallback>{user.name?.[0] ?? "U"}</AvatarFallback>
+              <AvatarImage src={user.avatarUrl} alt={user.name || user.email} />
+              <AvatarFallback>
+                {(user.name || user.email)?.[0]?.toUpperCase() ?? "U"}
+              </AvatarFallback>
             </Avatar>
           ) : (
             <>

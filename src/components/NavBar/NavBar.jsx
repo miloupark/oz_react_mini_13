@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 import UserMenu from "./UserMenu";
 
 export default function NavBar() {
-  const { user, logout } = useAuth();
+  const { user, signOut } = useAuth();
   const navigate = useNavigate();
 
   return (
@@ -21,9 +21,15 @@ export default function NavBar() {
         ) : (
           <UserMenu
             user={user}
-            onLogout={() => {
-              logout();
-              navigate("/", { replace: true });
+            onLogout={async () => {
+              try {
+                // Supabase signOut()은 서버와 통신하는 비동기 함수 (Promise 반환)
+                await signOut();
+                // 로그아웃 후 홈으로 이동
+                navigate("/", { replace: true });
+              } catch (err) {
+                console.error("로그아웃 실패:", err);
+              }
             }}
           />
         )}
