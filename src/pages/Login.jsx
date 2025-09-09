@@ -11,14 +11,14 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { loginSchema } from "@/lib/authSchemas";
 import InputField from "@/components/InputField";
-import { Link, Navigate, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "@/contexts/AuthContext";
 
 // shadcn/ui Form + react-hook-form + zod
 
 export default function Login() {
   const navigate = useNavigate();
-  const { login } = useAuth();
+  const { signIn } = useAuth();
 
   const form = useForm({
     resolver: zodResolver(loginSchema), // zod 스키마로 검증
@@ -27,11 +27,13 @@ export default function Login() {
     shouldFocusError: true, // 에러 발생 시 해당 필드로 포커스
   });
 
-  const onSubmit = (data) => {
-    // 로그인 테스트
-    login({ email: data.email, name: "Demo User" });
-    navigate("/", { replace: true });
-    // 실제 로그인 API 호출
+  const onSubmit = async (data) => {
+    try {
+      await signIn({ email: data.email, password: data.password });
+      navigate("/", { replace: true });
+    } catch (e) {
+      console.error(e);
+    }
   };
 
   return (

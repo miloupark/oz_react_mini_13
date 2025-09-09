@@ -1,23 +1,69 @@
-import { createContext, useContext, useState, useMemo } from "react";
+import { useSupabase } from "@/lib/supabase";
+import { createContext, useContext, useState, useEffect } from "react";
+
 // 컨텍스트 생성
 const AuthContext = createContext(null);
 
 export function AuthProvider({ children }) {
+  const supabase = useSupabase();
   const [user, setUser] = useState(null);
-  const login = ({ name, email, avatarUrl }) =>
-    setUser({
-      id: "demo",
-      name,
-      email,
-      avatarUrl: avatarUrl ?? null,
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    let mounted = true;
+
+    (async () => {
+      const { data, error } = await supabase.auth.getUser();
+      if (mounted) {
+        setUser(error ? null : data?.user ?? null);
+        setLoading(false);
+      }
+    })();
+
+    const { data: sub } = supabase.auth.onAuthStateChange((_event, session) => {
+      setUser(session?.user ?? null);
     });
 
-  const logout = () => setUser(null);
-  // 아바타 갱신
-  const updateAvatar = (url) =>
-    setUser((u) => (u ? { ...u, avatarUrl: url } : u));
+    return () => {
+      mounted = false;
+      sub?.subscription?.unsubscribe?.();
+    };
+  }, [supabase]);
 
-  const value = useMemo(() => ({ user, login, logout, updateAvatar }), [user]);
+  // 액션
+  const signUp = async ({ email, password, name }) => {
+    const { data, error } = await supabase.auth.signUp({
+      email,
+      password,
+      options: {
+        data: { name },
+      },
+    });
+    if (error) throw error;
+    return data;
+  };
+
+  const signIn = async ({ email, password }) => {
+    const { data, error } = await supabase.auth.signInWithPassword({
+      email,
+      password,
+    });
+    if (error) throw error;
+    return data;
+  };
+
+  const signOut = async () => {
+    const { error } = await supabase.auth.signOut();
+    if (error) throw error;
+  };
+
+  const updateAvatar = (url) => {
+    setUser((u) =>
+      u ? { ...u, user_metadata: { ...u.user_metadata, avatar_url: url } } : u
+    );
+  };
+
+  const value = { user, loading, signUp, signIn, signOut, updateAvatar };
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 }

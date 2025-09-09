@@ -12,6 +12,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { signupSchema } from "@/lib/authSchemas";
 import InputField from "@/components/InputField";
 import { Link, useLocation, useNavigate } from "react-router-dom";
+import { useAuth } from "@/contexts/AuthContext";
 
 // shadcn/ui Form + react-hook-form + zod
 
@@ -20,6 +21,7 @@ export default function SignUp() {
   const location = useLocation();
   // 가입 후 로그인 페이지로 이동
   const from = location.state?.from ?? "/login";
+  const { signUp } = useAuth();
 
   const form = useForm({
     resolver: zodResolver(signupSchema), // zod 스키마로 검증
@@ -32,13 +34,19 @@ export default function SignUp() {
 
   const onSubmit = async (data) => {
     try {
-      console.log("회원가입 요청:", data);
-      // 실제 회원가입 API 호출
-      navigate(from, { replace: true });
-      // replace=true로 히스토리에 가입 페이지 안 남기기
+      await signUp({
+        email: data.email,
+        password: data.password,
+        name: data.name,
+      });
+      navigate(from, {
+        replace: true,
+        state: {
+          flash: "회원가입이 완료되었습니다. 이메일 인증 후 로그인해 주세요.",
+        },
+      });
     } catch (e) {
       console.error(e);
-      // 이미 사용중인 이메일의 경우 에러 매핑 필요
     }
   };
 
