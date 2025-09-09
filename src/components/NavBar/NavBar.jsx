@@ -11,11 +11,6 @@ export default function NavBar() {
           <SearchTrigger />
         </div>
         <AuthButtons LinkDir={"/login"} ButtonText={"Login"} />
-        <AuthButtons
-          LinkDir={"/signup"}
-          ButtonText={"Signup"}
-          className="hidden md:block"
-        />
       </nav>
     </header>
   );
