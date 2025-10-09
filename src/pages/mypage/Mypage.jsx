@@ -34,7 +34,7 @@ export default function Mypage() {
   const email = userDefault.email ?? 'no-email@example.com';
 
   return (
-    <SidebarProvider>
+    <SidebarProvider className="min-h-[calc(100svh-80px)]">
       <MypageSidebar user={userDefault} />
 
       <SidebarInset className="flex-1 w-full p-4">
