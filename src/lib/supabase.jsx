@@ -1,5 +1,5 @@
-import { createClient, SupabaseClient } from "@supabase/supabase-js";
-import { createContext, useContext } from "react";
+import { createClient, SupabaseClient } from '@supabase/supabase-js';
+import { createContext, useContext } from 'react';
 
 // supabase Client 생성
 const supabase = createClient(
@@ -18,7 +18,7 @@ export const useSupabase = () => {
   const client = useContext(SUPABASE);
   if (!client) {
     throw new Error(
-      "SupabaseProvider로 앱을 감싼 뒤 useSupabase를 사용하세요."
+      'SupabaseProvider로 앱을 감싼 뒤 useSupabase를 사용하세요.'
     );
   }
   return client;
