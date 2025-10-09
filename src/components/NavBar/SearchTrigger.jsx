@@ -40,7 +40,7 @@ export default function SearchTrigger({
       <span className="hidden sm:block truncate text-muted-foreground">
         {label}
       </span>
-      <kbd className="hidden sm:inline-flex ml-auto rounded bg-muted px-1 text-xs text-muted-foreground">
+      <kbd className="hidden sm:inline-flex ml-auto rounded bg-muted px-1 text-xs ">
         ⌘K
       </kbd>
     </Button>
