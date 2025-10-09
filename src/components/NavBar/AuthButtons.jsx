@@ -1,5 +1,5 @@
-import { NavLink } from "react-router-dom";
-import { Button } from "../ui/button";
+import { NavLink } from 'react-router-dom';
+import { Button } from '../ui/button';
 
 export default function AuthButtons({ ButtonText, LinkDir, className }) {
   return (

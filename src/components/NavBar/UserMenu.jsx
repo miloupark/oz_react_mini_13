@@ -19,7 +19,7 @@ export default function UserMenu({ user, onLogout }) {
     <DropdownMenu>
       {/* 드롭다운 트리거 */}
       <DropdownMenuTrigger asChild>
-        <Button variant="outline" className="cursor-pointer">
+        <Button variant="outline" className="w-10 h-10 border cursor-pointer">
           {user?.avatarUrl ? (
             <Avatar>
               <AvatarImage src={user.avatarUrl} alt={user.name || user.email} />
@@ -29,7 +29,7 @@ export default function UserMenu({ user, onLogout }) {
             </Avatar>
           ) : (
             <>
-              <CircleUser aria-hidden="true" />
+              <CircleUser className="h-4 w-4" aria-hidden="true" />
               <span className="sr-only">Open user menu</span>
             </>
           )}

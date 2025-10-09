@@ -1,5 +1,5 @@
-import { useSupabase } from "@/lib/supabase";
-import { createContext, useContext, useState, useEffect } from "react";
+import { useSupabase } from '@/lib/supabase';
+import { createContext, useContext, useState, useEffect } from 'react';
 
 // 컨텍스트 생성
 const AuthContext = createContext(null);
@@ -71,6 +71,6 @@ export function AuthProvider({ children }) {
 // Provider 없이 쓰면 에러 투척
 export const useAuth = () => {
   const ctx = useContext(AuthContext);
-  if (!ctx) throw new Error("useAuth must be used within AuthProvider");
+  if (!ctx) throw new Error('useAuth must be used within AuthProvider');
   return ctx;
 };

@@ -1,7 +1,7 @@
-import MovieCard from "../components/MovieCard";
-import { useEffect, useState } from "react";
-import { TMDB_BASE_URL } from "@/constants/tmdb";
-import Hero from "../components/Hero";
+import MovieCard from '../components/MovieCard';
+import { useEffect, useState } from 'react';
+import { TMDB_BASE_URL } from '@/constants/tmdb';
+import Hero from '../components/Hero';
 
 export default function App() {
   const [movies, setMovies] = useState([]);
@@ -10,9 +10,9 @@ export default function App() {
   useEffect(() => {
     // API 요청 옵션
     const options = {
-      method: "GET",
+      method: 'GET',
       headers: {
-        accept: "application/json",
+        accept: 'application/json',
         Authorization: `Bearer ${import.meta.env.VITE_TMDB_ACCESS_TOKEN}`,
       },
     };
