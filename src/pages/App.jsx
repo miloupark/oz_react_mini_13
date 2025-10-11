@@ -63,16 +63,18 @@ export default function App() {
   }, [page]);
 
   return (
-    <div className="w-full justify-items-center mx-auto text-center font-figtree">
+    <div className="w-full justify-items-center mx-auto text-center">
       <Hero />
-      <section className="max-w-[1280px] grid-cols-1 sm:grid-cols-3  md:grid-cols-4 lg:grid-cols-5 grid gap-5">
+      <section className="max-w-[1280px] grid-cols-1 sm:grid-cols-3  md:grid-cols-4 lg:grid-cols-5 grid gap-5 py-5">
         {movies.map((movie) => (
           <MovieCard
             key={movie.id}
             movieId={movie.id}
             imagePath={movie.poster_path}
             movieTitle={movie.title}
-            movieRating={movie.vote_average}
+            voteRating={movie.vote_average}
+            voteCount={movie.vote_count}
+            releaseDate={movie.release_date}
           />
         ))}
       </section>

@@ -49,10 +49,10 @@ export default function UserMenu({ user, onLogout }) {
           <Link to="/mypage">마이페이지</Link>
         </DropdownMenuItem>
         <DropdownMenuItem asChild>
-          <Link to="mypage/favorite">나의 취향</Link>
+          <Link to="/mypage/favorite">나의 취향</Link>
         </DropdownMenuItem>
         <DropdownMenuItem asChild>
-          <Link to="mypage/setting">설정</Link>
+          <Link to="/mypage/setting">설정</Link>
         </DropdownMenuItem>
 
         <DropdownMenuSeparator />
